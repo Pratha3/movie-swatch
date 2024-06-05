@@ -1,0 +1,74 @@
+/* starts ratting */
+
+.rating {
+  width: 250px;
+  height: 50px;
+  margin: 0 0;
+  padding: 10px 0px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: center;
+}
+
+.rating label {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.rating label:before {
+  content: "\2605";
+  font-size: 42px;
+  color: #f0f0f0;
+  line-height: 1;
+}
+
+.rating input {
+  display: none;
+}
+
+.rating input:checked ~ label:before,
+.rating:not(:checked) > label:hover:before,
+.rating:not(:checked) > label:hover ~ label:before {
+  color: black;
+}
+
+/* cardratting */
+
+.cardRating {
+  height: 30px;
+  margin: 0 0;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: flex-end;
+}
+.cardRating label {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+.cardRating label:before {
+  content: "\2605";
+  font-size: 18px;
+  line-height: 1;
+  color: black;
+}
+.cardRating input {
+  display: none;
+}
+.cardRating input:checked ~ label:before {
+  color: #ccc;
+}
+
+/* cards effect */
+.card:hover .cardText {
+  top: 50% !important;
+}
+.cardText {
+  transition: all 0.3s linear;
+}

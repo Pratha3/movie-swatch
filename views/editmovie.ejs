@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>edit movie</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./public/stylesheets/styel.css" />
+</head>
+
+<body>
+  <%- include('./partials/header') %>
+
+    <div class="flex flex-row bg-zinc-600 min-h-screen">
+      <%- include('./partials/aside') %>
+
+        <div class="basis-9/12 py-5 px-[15rem]">
+          <h2 class="text-center text-white text-4xl mb-10 font-bold">Edit Movie</h2>
+          <form class="text-zinc-400" action="\editmovie" method="post" enctype="multipart/form-data">
+            <input class="bg-zinc-700 border border-zinc-500 p-3 rounded-lg mb-3 w-full capitalize" type="text"
+              name="moviename" placeholder="Enter name of Movie" value="<%= movie.moviename %>" />
+
+            <select name="ratings" class="bg-zinc-700 border border-zinc-500 p-3 rounded-lg mb-3 w-full">
+              <option value="" disabled selected>Rating</option>
+
+              <% ["⭐", "⭐⭐" , "⭐⭐⭐" , "⭐⭐⭐⭐" , "⭐⭐⭐⭐⭐" ].map((sub,i)=>
+                { %> <option class="bg-transparent p-3" <% if (sub===movie.ratings) { %> selected <% } %> value="<%= i+1
+                      %>" /> <%= sub %>
+                        <% }) %>
+            </select>
+
+            <textarea class="bg-zinc-700 border border-zinc-500 p-3 rounded-lg mb-3 w-full" name="moviedisc"
+              placeholder="Enter Description of Movie">
+  <%= movie.moviedisc %></textarea>
+
+            <!-- <input
+            class="bg-zinc-700 border border-zinc-500 p-3 rounded-lg mb-3 w-full"
+            type="file"
+            name="image"
+            placeholder="Choose image of Movie"
+          /> -->
+
+            <div class="flex w-full items-center justify-between bg-grey-lighter">
+              <label
+                class="w-64 flex flex-col items-center px-4 py-8 bg-zinc-700 text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-zinc-400 hover:text-white">
+                <svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                  <path
+                    d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
+                </svg>
+                <span class="mt-2 text-base leading-normal">Select a file</span>
+                <input type="file" name="image" class="hidden" />
+              </label>
+
+              <img class="w-[8rem] h-full" src="../<%= movie.image %>" alt="" />
+            </div>
+
+
+            <input class="bg-blue-500 p-3 rounded-lg my-3 text-white" type="submit" value="Edit Movie" />
+
+            <a class="bg-yellow-500 py-4 px-3 rounded-lg mb-3 text-white ms-5" href="\"> Cancel</a>
+          </form>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>movie-swatch</title>
+  <link rel="stylesheet" href="./public/stylesheets/styel.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: rgb(58, 56, 56);
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <%- include('./partials/header') %>
+
+    <div class="flex flex-row  min-h-screen">
+      <%- include('./partials/aside') %>
+
+
+
+
+        <div class="basis-9/12 p-3">
+          <div class="flex flex-row flex-wrap">
+            <% movies.map((movie)=>{ %>
+              <div class="basis-1/3 p-2">
+                <div class="card rounded-lg h-full border border-zinc-500 p-3">
+                  <img class="cardImg h-100 w-full " src="<%= movie.image %>" alt="image" />
+                  <h1 class="text-black">
+                    <%= movie.moviename %>
+                  </h1>
+                  <div class="flex items-center my-2">
+                    <span class="text-lg text-black">
+                      <strong class="me-5">Ratings :</strong>
+                    </span>
+                    <div class="cardRating">
+                      <form>
+                        <% for(let i=1; i<=5; i++){ %>
+                          <% if (movie.ratings>= i) {
+                            %>
+                            <label htmlFor="{i}"></label>
+                            <input type="radio" name="rating" id="{i}" checked />
+                            <% } else { %>
+                              <label></label>
+                              <input type="radio" name="rating" />
+                              <% } }%>
+                      </form>
+                    </div>
+                  </div>
+                  <p class="text-sm text-zinc-400 capitalize mb-5">
+                    <span class="text-lg text-black">
+                      <strong class="me-5">Description :</strong>
+                    </span>
+                    <%= movie.moviedisc %>
+                  </p>
+
+                  <div class="flex flex-row justify-start items-center mt-3">
+                    <a href="/deleteData?id=<%= movie._id %>"
+                      class="bg-yellow-300 w-20 text-center py-2 text-black rounded-lg me-5">Delete</a>
+                    <a href="/editData?id=<%= movie._id %>"
+                      class="bg-gray-300 w-20 text-center py-2 text-black rounded-lg me-5">Edit</a>
+
+                  </div>
+                </div>
+              </div>
+              <% }) %>
+          </div>
+        </div>
+    </div>
+</body>
+
+</html>
